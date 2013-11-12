@@ -19,4 +19,15 @@
         return nil;
     }
 }
+
++(NSString *)getSelectedVehicleId{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSObject *objModelId = [defaults objectForKey:@"model_id"];
+    if(objModelId != nil){
+        return [defaults objectForKey:@"model_id"];
+    }else{
+        return nil;
+    }
+}
+
 @end

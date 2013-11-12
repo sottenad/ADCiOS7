@@ -1,23 +1,22 @@
 //
-//  adcYearController.m
+//  adcProductListController.m
 //  ADC
 //
-//  Created by Steve Ottenad on 11/11/13.
+//  Created by Steve Ottenad on 11/12/13.
 //  Copyright (c) 2013 ADC. All rights reserved.
 //
 
-#import "adcYearController.h"
-#import "adcApiSessonManager.h"
+#import "adcProductListController.h"
 #import "adcUserHelper.h"
-#import "adcMakeController.h"
+#import "adcApiSessonManager.h"
 
-
-@interface adcYearController ()
+@interface adcProductListController ()
 
 @end
 
-@implementation adcYearController
+@implementation adcProductListController
 
+@synthesize categoryObj;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,17 +30,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
+    NSString *categoryId = [categoryObj valueForKey:@"id"];
     
-    adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
-    [sessionManager POST:@"api/years.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        myYears = responseObject;
-        [self.tableView reloadData];
+    if(vehicleId!=nil){
+        NSDictionary *params = @{@"carid":vehicleId, @"catid":categoryId };
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Error: %@",error);
-    }];
-
-
+        adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
+        [sessionManager POST:@"api/productsByCarAndCat/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@", responseObject);
+            myProducts = responseObject;
+            [self.tableView reloadData];
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"Error: %@",error);
+        }];
+    }else{
+        NSLog(@"Somehow you got here without a Vehicle ID or Category ID.");
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,16 +61,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return myYears.count;
+    return myProducts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,9 +83,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *row = [myYears objectAtIndex:indexPath.row];
+    NSDictionary *row = [myProducts objectAtIndex:indexPath.row];
     UILabel *title = (UILabel *)[cell viewWithTag:100];
-    NSNumber *value = [row valueForKey:@"year"];
+    NSNumber *value = [row valueForKey:@"name"];
     NSString *year = [NSString stringWithFormat:@"%@",value];
     title.text = year;
     
@@ -124,18 +131,16 @@
 }
 */
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
-    adcMakeController *makeViewController = [segue destinationViewController];
-    NSDictionary *row = [myYears objectAtIndex:selectedRowIndex.row];
-
-    makeViewController.yearObj = row;
-}
+ */
 
 @end

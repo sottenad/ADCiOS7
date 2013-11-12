@@ -1,23 +1,21 @@
 //
-//  adcYearController.m
+//  adcModelController.m
 //  ADC
 //
 //  Created by Steve Ottenad on 11/11/13.
 //  Copyright (c) 2013 ADC. All rights reserved.
 //
 
-#import "adcYearController.h"
+#import "adcModelController.h"
 #import "adcApiSessonManager.h"
-#import "adcUserHelper.h"
-#import "adcMakeController.h"
 
-
-@interface adcYearController ()
+@interface adcModelController ()
 
 @end
 
-@implementation adcYearController
+@implementation adcModelController
 
+@synthesize makeObj, yearObj;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,17 +29,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSString *yearId = [yearObj valueForKey:@"id"];
+    NSString *makeId = [makeObj valueForKey:@"id"];
     
     adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
-    [sessionManager POST:@"api/years.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        myYears = responseObject;
-        [self.tableView reloadData];
+    if(makeId !=nil && yearId !=nil){
+        NSDictionary *params = @{@"yearid": yearId, @"makeid": makeId};
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Error: %@",error);
-    }];
-
-
+        [sessionManager POST:@"api/carsByMakeAndYear/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            myModels = responseObject;
+            [self.tableView reloadData];
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"Error: %@",error);
+        }];
+    }else{
+        NSLog(@"Year or Make ID wasnt set");
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,35 +59,53 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
-    return myYears.count;
+    return myModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *row = [myYears objectAtIndex:indexPath.row];
+    NSDictionary *row = [myModels objectAtIndex:indexPath.row];
     UILabel *title = (UILabel *)[cell viewWithTag:100];
-    NSNumber *value = [row valueForKey:@"year"];
-    NSString *year = [NSString stringWithFormat:@"%@",value];
-    title.text = year;
+    NSString *make = [row valueForKey:@"model"];
+    title.text = make;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *selectedRow = [myModels objectAtIndex:indexPath.row];
+    NSString *modelName = [selectedRow valueForKey:@"model"];
+    NSString *makeName = [makeObj valueForKey:@"name"];
+    NSString *yearName = [yearObj valueForKey:@"year"];
+    NSString *vehicleName = [NSString stringWithFormat:@"%@ %@ %@",yearName, makeName, modelName];
+    
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:vehicleName forKey:@"selected_vehicle_name"];
+    //TODO: Figure out why the model object cannot save to NSdefaults
+    //[defaults setObject:selectedRow forKey:@"model"];
+    [defaults setObject:[selectedRow valueForKey:@"id"] forKey:@"model_id"];
+    [defaults setObject:makeObj forKey:@"make"];
+    [defaults setObject:yearObj forKey:@"year"];
+    [defaults synchronize];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 /*
@@ -124,18 +147,17 @@
 }
 */
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
-    adcMakeController *makeViewController = [segue destinationViewController];
-    NSDictionary *row = [myYears objectAtIndex:selectedRowIndex.row];
+ */
 
-    makeViewController.yearObj = row;
-}
 
 @end

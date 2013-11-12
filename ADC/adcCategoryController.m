@@ -1,23 +1,21 @@
 //
-//  adcYearController.m
+//  adcCategoryController.m
 //  ADC
 //
-//  Created by Steve Ottenad on 11/11/13.
+//  Created by Steve Ottenad on 11/12/13.
 //  Copyright (c) 2013 ADC. All rights reserved.
 //
 
-#import "adcYearController.h"
+#import "adcCategoryController.h"
 #import "adcApiSessonManager.h"
 #import "adcUserHelper.h"
-#import "adcMakeController.h"
+#import "adcProductListController.h"
 
-
-@interface adcYearController ()
+@interface adcCategoryController ()
 
 @end
 
-@implementation adcYearController
-
+@implementation adcCategoryController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,17 +29,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
     
-    adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
-    [sessionManager POST:@"api/years.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        myYears = responseObject;
-        [self.tableView reloadData];
+    if(vehicleId!=nil){
+        NSDictionary *params = @{@"id":vehicleId};
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Error: %@",error);
-    }];
-
-
+        adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
+        [sessionManager POST:@"api/categories/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@", responseObject);
+            myCategories = responseObject;
+            [self.tableView reloadData];
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"Error: %@",error);
+        }];
+    }else{
+        NSLog(@"Somehow you got here without a vehicle id.");
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,16 +60,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
-    return myYears.count;
+    return myCategories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,9 +80,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *row = [myYears objectAtIndex:indexPath.row];
+    NSDictionary *row = [myCategories objectAtIndex:indexPath.row];
     UILabel *title = (UILabel *)[cell viewWithTag:100];
-    NSNumber *value = [row valueForKey:@"year"];
+    NSNumber *value = [row valueForKey:@"name"];
     NSString *year = [NSString stringWithFormat:@"%@",value];
     title.text = year;
     
@@ -132,10 +136,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
-    adcMakeController *makeViewController = [segue destinationViewController];
-    NSDictionary *row = [myYears objectAtIndex:selectedRowIndex.row];
-
-    makeViewController.yearObj = row;
+    adcProductListController *productViewController = [segue destinationViewController];
+    NSDictionary *row = [myCategories objectAtIndex:selectedRowIndex.row];
+    
+    productViewController.categoryObj = row;
 }
 
 @end

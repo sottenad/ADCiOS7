@@ -1,5 +1,5 @@
 //
-//  adcYearController.h
+//  adcMakeController.h
 //  ADC
 //
 //  Created by Steve Ottenad on 11/11/13.
@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcYearController : UITableViewController{
-    NSMutableArray *myYears;
+@interface adcMakeController : UITableViewController{
+    NSMutableArray *myMakes;
 }
+
+@property NSDictionary *yearObj;
 
 
 @end

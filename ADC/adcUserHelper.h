@@ -12,4 +12,6 @@
 
 +(NSString*)getUserToken;
 
++(NSString *)getSelectedVehicleId;
+
 @end

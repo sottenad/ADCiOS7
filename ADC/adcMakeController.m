@@ -1,23 +1,23 @@
 //
-//  adcYearController.m
+//  adcMakeController.m
 //  ADC
 //
 //  Created by Steve Ottenad on 11/11/13.
 //  Copyright (c) 2013 ADC. All rights reserved.
 //
 
-#import "adcYearController.h"
-#import "adcApiSessonManager.h"
-#import "adcUserHelper.h"
 #import "adcMakeController.h"
+#import "adcApiSessonManager.h"
+#import "adcModelController.h"
 
 
-@interface adcYearController ()
+@interface adcMakeController ()
 
 @end
 
-@implementation adcYearController
+@implementation adcMakeController
 
+@synthesize yearObj;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,17 +31,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSString *yearId = [yearObj valueForKey:@"id"];
     
     adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
-    [sessionManager POST:@"api/years.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        myYears = responseObject;
-        [self.tableView reloadData];
+    if(yearId !=nil){
+        NSDictionary *params = @{@"id": yearId};
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Error: %@",error);
-    }];
-
-
+        [sessionManager POST:@"api/makes/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            myMakes = responseObject;
+            [self.tableView reloadData];
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"Error: %@",error);
+        }];
+    }else{
+        NSLog(@"Year id wasnt set");
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,34 +62,31 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
-    return myYears.count;
+    return myMakes.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *row = [myYears objectAtIndex:indexPath.row];
+    NSDictionary *row = [myMakes objectAtIndex:indexPath.row];
     UILabel *title = (UILabel *)[cell viewWithTag:100];
-    NSNumber *value = [row valueForKey:@"year"];
-    NSString *year = [NSString stringWithFormat:@"%@",value];
-    title.text = year;
-    
+    NSString *make = [row valueForKey:@"name"];
+    title.text = make;
+
     return cell;
 }
 
@@ -132,10 +137,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
-    adcMakeController *makeViewController = [segue destinationViewController];
-    NSDictionary *row = [myYears objectAtIndex:selectedRowIndex.row];
-
-    makeViewController.yearObj = row;
+    adcModelController *modelViewController = [segue destinationViewController];
+    NSDictionary *row = [myMakes objectAtIndex:selectedRowIndex.row];
+    
+    modelViewController.yearObj = yearObj;
+    modelViewController.makeObj = row;
 }
 
 @end
