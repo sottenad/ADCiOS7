@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcProductListController : UITableViewController{
+@interface adcProductListController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>{
     NSMutableArray *myProducts;
 }
+
+@property IBOutlet UICollectionView *productCollection;
 
 @property NSDictionary *mfgObj;
 @property NSDictionary *categoryObj;

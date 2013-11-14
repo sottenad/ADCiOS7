@@ -42,7 +42,6 @@
         
         adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
         [sessionManager POST:@"api/categories/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@", responseObject);
             myCategories = responseObject;
             [categoryTable reloadData];
             

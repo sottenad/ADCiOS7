@@ -30,6 +30,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    UIImage *barBG = [[UIImage alloc] initWithContentsOfFile:@"top_bar.png"];
+    [self.navigationController.navigationBar setBackgroundImage:barBG forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning

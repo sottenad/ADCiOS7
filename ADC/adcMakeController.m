@@ -43,7 +43,7 @@
         NSDictionary *params = @{@"id": yearId};
         
         [sessionManager POST:@"api/makes/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
+
             myMakes = responseObject;
             [makeTable reloadData];
             

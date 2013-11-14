@@ -12,6 +12,8 @@
 		AA4FE3A4183492D6006F2424 /* ogm1_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA4FE3A1183492D6006F2424 /* ogm1_sample.jpg */; };
 		AA4FE3A5183492D6006F2424 /* ogm1_sample@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA4FE3A2183492D6006F2424 /* ogm1_sample@2x.jpg */; };
 		AA4FE3A81834A2DA006F2424 /* adcManufacturerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FE3A71834A2DA006F2424 /* adcManufacturerController.m */; };
+		AA4FE3AB1834AA32006F2424 /* adcProductDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FE3AA1834AA32006F2424 /* adcProductDetailController.m */; };
+		AA4FE3AE1834AE66006F2424 /* top_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = AA4FE3AD1834AE66006F2424 /* top_bar.png */; };
 		AAAFF478183023EF00917E76 /* adc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAAFF477183023EF00917E76 /* adc.storyboard */; };
 		AAAFF47E1830250C00917E76 /* adcHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF47D1830250C00917E76 /* adcHomeViewController.m */; };
 		AAAFF4811830267100917E76 /* adcSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF4801830267100917E76 /* adcSignInViewController.m */; };
@@ -57,6 +59,9 @@
 		AA4FE3A2183492D6006F2424 /* ogm1_sample@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ogm1_sample@2x.jpg"; path = "images/ogm1_sample@2x.jpg"; sourceTree = "<group>"; };
 		AA4FE3A61834A2DA006F2424 /* adcManufacturerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcManufacturerController.h; sourceTree = "<group>"; };
 		AA4FE3A71834A2DA006F2424 /* adcManufacturerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcManufacturerController.m; sourceTree = "<group>"; };
+		AA4FE3A91834AA32006F2424 /* adcProductDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcProductDetailController.h; sourceTree = "<group>"; };
+		AA4FE3AA1834AA32006F2424 /* adcProductDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcProductDetailController.m; sourceTree = "<group>"; };
+		AA4FE3AD1834AE66006F2424 /* top_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = top_bar.png; path = images/top_bar.png; sourceTree = "<group>"; };
 		AAAFF477183023EF00917E76 /* adc.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = adc.storyboard; sourceTree = "<group>"; };
 		AAAFF47C1830250C00917E76 /* adcHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcHomeViewController.h; sourceTree = "<group>"; };
 		AAAFF47D1830250C00917E76 /* adcHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcHomeViewController.m; sourceTree = "<group>"; };
@@ -126,11 +131,21 @@
 		AA4FE398183492A8006F2424 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				AA4FE3AD1834AE66006F2424 /* top_bar.png */,
 				AA4FE3A0183492D6006F2424 /* model-header.jpg */,
 				AA4FE3A1183492D6006F2424 /* ogm1_sample.jpg */,
 				AA4FE3A2183492D6006F2424 /* ogm1_sample@2x.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		AA4FE3AC1834AA54006F2424 /* Product Detail and Cart */ = {
+			isa = PBXGroup;
+			children = (
+				AA4FE3A91834AA32006F2424 /* adcProductDetailController.h */,
+				AA4FE3AA1834AA32006F2424 /* adcProductDetailController.m */,
+			);
+			name = "Product Detail and Cart";
 			sourceTree = "<group>";
 		};
 		AACE66B1183074FE0012FEB0 /* Vehicle Selection */ = {
@@ -206,9 +221,9 @@
 		AAF1B0DF183022FC00604D91 /* ADC */ = {
 			isa = PBXGroup;
 			children = (
-				AA4FE398183492A8006F2424 /* Images */,
 				AAAFF477183023EF00917E76 /* adc.storyboard */,
 				AACE66B818308A1E0012FEB0 /* Helpers */,
+				AA4FE3AC1834AA54006F2424 /* Product Detail and Cart */,
 				AACE66C818321BD90012FEB0 /* Catalog Selection */,
 				AACE66B1183074FE0012FEB0 /* Vehicle Selection */,
 				AAF1B0E8183022FC00604D91 /* adcAppDelegate.h */,
@@ -219,6 +234,7 @@
 				AAAFF47D1830250C00917E76 /* adcHomeViewController.m */,
 				AAF1B0EE183022FC00604D91 /* Images.xcassets */,
 				AAF1B0EB183022FC00604D91 /* ADC.xcdatamodeld */,
+				AA4FE398183492A8006F2424 /* Images */,
 				AAF1B0E0183022FC00604D91 /* Supporting Files */,
 			);
 			path = ADC;
@@ -332,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA4FE3A5183492D6006F2424 /* ogm1_sample@2x.jpg in Resources */,
+				AA4FE3AE1834AE66006F2424 /* top_bar.png in Resources */,
 				AAF1B0E4183022FC00604D91 /* InfoPlist.strings in Resources */,
 				AAF1B0EF183022FC00604D91 /* Images.xcassets in Resources */,
 				AA4FE3A3183492D6006F2424 /* model-header.jpg in Resources */,
@@ -397,6 +414,7 @@
 				AACE66BE1831EA440012FEB0 /* adcYearController.m in Sources */,
 				AAAFF4811830267100917E76 /* adcSignInViewController.m in Sources */,
 				AACE66AD18302FE40012FEB0 /* adcApiSessonManager.m in Sources */,
+				AA4FE3AB1834AA32006F2424 /* adcProductDetailController.m in Sources */,
 				AACE66BB18308A4F0012FEB0 /* adcUserHelper.m in Sources */,
 				AAF1B0ED183022FC00604D91 /* ADC.xcdatamodeld in Sources */,
 				AACE66CE18321F900012FEB0 /* adcProductListController.m in Sources */,

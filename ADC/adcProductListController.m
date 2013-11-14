@@ -9,6 +9,7 @@
 #import "adcProductListController.h"
 #import "adcUserHelper.h"
 #import "adcApiSessonManager.h"
+#import "adcProductDetailController.h"
 
 @interface adcProductListController ()
 
@@ -16,11 +17,12 @@
 
 @implementation adcProductListController
 
-@synthesize categoryObj;
+@synthesize categoryObj, mfgObj, productCollection;
 
-- (id)initWithStyle:(UITableViewStyle)style
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -31,17 +33,20 @@
 {
     [super viewDidLoad];
 
+    [productCollection setDataSource:self];
+    [productCollection setDelegate:self];
+    
     NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
     NSString *categoryId = [categoryObj valueForKey:@"id"];
+    NSString *manufacturerId = [mfgObj valueForKey:@"id"];
     
     if(vehicleId!=nil){
-        NSDictionary *params = @{@"carid":vehicleId, @"catid":categoryId };
+        NSDictionary *params = @{@"carid":vehicleId, @"catid":categoryId, @"mfgid": manufacturerId };
         
         adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
-        [sessionManager POST:@"api/productsByCarAndCat/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@", responseObject);
+        [sessionManager POST:@"api/getproductsbycarcatmfg/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
             myProducts = responseObject;
-            [self.tableView reloadData];
+            [productCollection reloadData];
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"Error: %@",error);
@@ -59,36 +64,31 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return myProducts.count;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    // Configure the cell...
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+
     NSDictionary *row = [myProducts objectAtIndex:indexPath.row];
     UILabel *title = (UILabel *)[cell viewWithTag:100];
     NSNumber *value = [row valueForKey:@"name"];
     NSString *year = [NSString stringWithFormat:@"%@",value];
     title.text = year;
     
+    NSLog(@"%@", year);
     return cell;
 }
 
@@ -131,16 +131,18 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSArray *selectedRowIndexes = [productCollection indexPathsForSelectedItems];
+    NSIndexPath *selectedRowIndex = [selectedRowIndexes firstObject];
+    adcProductDetailController *productDetailController = [segue destinationViewController];
+    NSDictionary *row = [myProducts objectAtIndex:selectedRowIndex.row];
+    
+    productDetailController.categoryObj = categoryObj;
+    productDetailController.mfgObj = mfgObj;
+    productDetailController.productObj = row;
 }
-
- */
 
 @end

@@ -43,7 +43,7 @@
         
         adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
         [sessionManager POST:@"api/mfgByCarAndCat/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@", responseObject);
+
             myMfgs = responseObject;
             [mfgTable reloadData];
             
