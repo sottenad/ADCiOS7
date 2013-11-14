@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcManufacturerController : UITableViewController{
+@interface adcManufacturerController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myMfgs;
 }
+
+@property IBOutlet UITableView *mfgTable;
 
 @property NSDictionary *categoryObj;
 

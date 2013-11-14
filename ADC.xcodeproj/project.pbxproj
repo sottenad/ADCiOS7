@@ -11,6 +11,7 @@
 		AA4FE3A3183492D6006F2424 /* model-header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA4FE3A0183492D6006F2424 /* model-header.jpg */; };
 		AA4FE3A4183492D6006F2424 /* ogm1_sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA4FE3A1183492D6006F2424 /* ogm1_sample.jpg */; };
 		AA4FE3A5183492D6006F2424 /* ogm1_sample@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AA4FE3A2183492D6006F2424 /* ogm1_sample@2x.jpg */; };
+		AA4FE3A81834A2DA006F2424 /* adcManufacturerController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FE3A71834A2DA006F2424 /* adcManufacturerController.m */; };
 		AAAFF478183023EF00917E76 /* adc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAAFF477183023EF00917E76 /* adc.storyboard */; };
 		AAAFF47E1830250C00917E76 /* adcHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF47D1830250C00917E76 /* adcHomeViewController.m */; };
 		AAAFF4811830267100917E76 /* adcSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF4801830267100917E76 /* adcSignInViewController.m */; };
@@ -54,6 +55,8 @@
 		AA4FE3A0183492D6006F2424 /* model-header.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "model-header.jpg"; path = "images/model-header.jpg"; sourceTree = "<group>"; };
 		AA4FE3A1183492D6006F2424 /* ogm1_sample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ogm1_sample.jpg; path = images/ogm1_sample.jpg; sourceTree = "<group>"; };
 		AA4FE3A2183492D6006F2424 /* ogm1_sample@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ogm1_sample@2x.jpg"; path = "images/ogm1_sample@2x.jpg"; sourceTree = "<group>"; };
+		AA4FE3A61834A2DA006F2424 /* adcManufacturerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcManufacturerController.h; sourceTree = "<group>"; };
+		AA4FE3A71834A2DA006F2424 /* adcManufacturerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcManufacturerController.m; sourceTree = "<group>"; };
 		AAAFF477183023EF00917E76 /* adc.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = adc.storyboard; sourceTree = "<group>"; };
 		AAAFF47C1830250C00917E76 /* adcHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcHomeViewController.h; sourceTree = "<group>"; };
 		AAAFF47D1830250C00917E76 /* adcHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcHomeViewController.m; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 			children = (
 				AACE66C918321BFC0012FEB0 /* adcCategoryController.h */,
 				AACE66CA18321BFC0012FEB0 /* adcCategoryController.m */,
+				AA4FE3A61834A2DA006F2424 /* adcManufacturerController.h */,
+				AA4FE3A71834A2DA006F2424 /* adcManufacturerController.m */,
 				AACE66CC18321F900012FEB0 /* adcProductListController.h */,
 				AACE66CD18321F900012FEB0 /* adcProductListController.m */,
 			);
@@ -386,6 +391,7 @@
 				AAF1B0E6183022FC00604D91 /* main.m in Sources */,
 				AAF1B0EA183022FC00604D91 /* adcAppDelegate.m in Sources */,
 				AACE66C71832091A0012FEB0 /* adcModelController.m in Sources */,
+				AA4FE3A81834A2DA006F2424 /* adcManufacturerController.m in Sources */,
 				AAAFF47E1830250C00917E76 /* adcHomeViewController.m in Sources */,
 				AACE66CB18321BFC0012FEB0 /* adcCategoryController.m in Sources */,
 				AACE66BE1831EA440012FEB0 /* adcYearController.m in Sources */,

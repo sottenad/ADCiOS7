@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcCategoryController : UITableViewController{
+@interface adcCategoryController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myCategories;
 }
+
+@property IBOutlet UITableView *categoryTable;
 
 @end

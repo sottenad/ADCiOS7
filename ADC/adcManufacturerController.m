@@ -17,11 +17,11 @@
 @end
 
 @implementation adcManufacturerController
-@synthesize categoryObj;
+@synthesize categoryObj, mfgTable;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -32,6 +32,8 @@
 {
     [super viewDidLoad];
 
+    [mfgTable setDelegate:self];
+    [mfgTable setDataSource:self];
     
     NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
     NSString *categoryId = [categoryObj valueForKey:@"id"];
@@ -43,7 +45,7 @@
         [sessionManager POST:@"api/mfgByCarAndCat/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"%@", responseObject);
             myMfgs = responseObject;
-            [self.tableView reloadData];
+            [mfgTable reloadData];
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"Error: %@",error);
@@ -84,10 +86,14 @@
     }
     
     NSDictionary *row = [myMfgs objectAtIndex:indexPath.row];
-    UILabel *title = (UILabel *)[cell viewWithTag:100];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     NSNumber *value = [row valueForKey:@"name"];
     NSString *year = [NSString stringWithFormat:@"%@",value];
     title.text = year;
+    
+    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [title setTextAlignment:NSTextAlignmentCenter];
+    [cell addSubview:title];
     
     return cell;
 }
@@ -133,12 +139,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [mfgTable deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+    NSIndexPath *selectedRowIndex = [mfgTable indexPathForSelectedRow];
     adcProductListController *productViewController = [segue destinationViewController];
     NSDictionary *row = [myMfgs objectAtIndex:selectedRowIndex.row];
     

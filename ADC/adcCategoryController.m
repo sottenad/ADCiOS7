@@ -17,9 +17,11 @@
 
 @implementation adcCategoryController
 
-- (id)initWithStyle:(UITableViewStyle)style
+@synthesize categoryTable;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -29,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [categoryTable setDelegate:self];
+    [categoryTable setDataSource:self];
 
     NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
     
@@ -39,7 +44,7 @@
         [sessionManager POST:@"api/categories/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"%@", responseObject);
             myCategories = responseObject;
-            [self.tableView reloadData];
+            [categoryTable reloadData];
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"Error: %@",error);
@@ -81,10 +86,16 @@
     }
     
     NSDictionary *row = [myCategories objectAtIndex:indexPath.row];
-    UILabel *title = (UILabel *)[cell viewWithTag:100];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     NSNumber *value = [row valueForKey:@"name"];
     NSString *year = [NSString stringWithFormat:@"%@",value];
     title.text = year;
+    
+    
+    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [title setTextAlignment:NSTextAlignmentCenter];
+    [cell addSubview:title];
+    
     
     return cell;
 }
@@ -130,12 +141,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [categoryTable deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+    NSIndexPath *selectedRowIndex = [categoryTable indexPathForSelectedRow];
     adcProductListController *productViewController = [segue destinationViewController];
     NSDictionary *row = [myCategories objectAtIndex:selectedRowIndex.row];
     

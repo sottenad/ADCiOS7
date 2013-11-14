@@ -12,6 +12,7 @@
     NSMutableArray *myProducts;
 }
 
+@property NSDictionary *mfgObj;
 @property NSDictionary *categoryObj;
 
 @end
