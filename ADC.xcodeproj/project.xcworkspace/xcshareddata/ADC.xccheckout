@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>183C0542-D764-4D4A-AB49-DF4961EE2572</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ADC</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5AA50F95-6A55-4265-AE83-A91D8D431C94</key>
+		<string>https://github.com/sottenad/ADCiOS7.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ADC.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5AA50F95-6A55-4265-AE83-A91D8D431C94</key>
+		<string>../..</string>
+		<key>DF333CA1-BA8D-42C0-85B2-703DF1EA7CEF</key>
+		<string>../../../../Archive/ADCiOS7</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sottenad/ADCiOS7.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5AA50F95-6A55-4265-AE83-A91D8D431C94</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5AA50F95-6A55-4265-AE83-A91D8D431C94</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ADC</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DF333CA1-BA8D-42C0-85B2-703DF1EA7CEF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ADCiOS7</string>
+		</dict>
+	</array>
+</dict>
+</plist>

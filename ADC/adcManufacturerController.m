@@ -1,29 +1,27 @@
 //
-//  adcYearController.m
+//  adcManufacturerController.m
 //  ADC
 //
-//  Created by Steve Ottenad on 11/11/13.
+//  Created by Steve Ottenad on 11/13/13.
 //  Copyright (c) 2013 ADC. All rights reserved.
 //
 
-#import "adcYearController.h"
-#import "adcApiSessonManager.h"
+#import "adcManufacturerController.h"
 #import "adcUserHelper.h"
-#import "adcMakeController.h"
+#import "adcApiSessonManager.h"
+#import "adcProductListController.h"
 
 
-@interface adcYearController ()
+@interface adcManufacturerController ()
 
 @end
 
-@implementation adcYearController
+@implementation adcManufacturerController
+@synthesize categoryObj;
 
-@synthesize yearTable;
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -33,17 +31,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
-    adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
-    [sessionManager POST:@"api/years.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        myYears = responseObject;
-        [yearTable reloadData];
+    NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
+    NSString *categoryId = [categoryObj valueForKey:@"id"];
+    
+    if(vehicleId!=nil){
+        NSDictionary *params = @{@"carid":vehicleId, @"catid":categoryId};
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Error: %@",error);
-    }];
-
-
+        adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
+        [sessionManager POST:@"api/mfgByCarAndCat/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@", responseObject);
+            myMfgs = responseObject;
+            [self.tableView reloadData];
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"Error: %@",error);
+        }];
+    }else{
+        NSLog(@"Somehow you got here without a vehicle id.");
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,16 +63,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
-    return myYears.count;
+    return myMfgs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,15 +83,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *row = [myYears objectAtIndex:indexPath.row];
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-    NSNumber *value = [row valueForKey:@"year"];
+    NSDictionary *row = [myMfgs objectAtIndex:indexPath.row];
+    UILabel *title = (UILabel *)[cell viewWithTag:100];
+    NSNumber *value = [row valueForKey:@"name"];
     NSString *year = [NSString stringWithFormat:@"%@",value];
-    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
-    [title setTextAlignment:NSTextAlignmentCenter];
     title.text = year;
-    
-    cell addSubview:title
     
     return cell;
 }
@@ -132,16 +133,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [yearTable deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSIndexPath *selectedRowIndex = [yearTable indexPathForSelectedRow];
-    adcMakeController *makeViewController = [segue destinationViewController];
-    NSDictionary *row = [myYears objectAtIndex:selectedRowIndex.row];
-
-    makeViewController.yearObj = row;
+    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+    adcProductListController *productViewController = [segue destinationViewController];
+    NSDictionary *row = [myMfgs objectAtIndex:selectedRowIndex.row];
+    
+    productViewController.categoryObj = categoryObj;
+    productViewController.mfgObj = row;
 }
 
 @end

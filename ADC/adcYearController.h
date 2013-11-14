@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcYearController : UITableViewController{
+@interface adcYearController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myYears;
 }
+
+@property IBOutlet UITableView *yearTable;
 
 
 @end
