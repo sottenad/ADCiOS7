@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcMakeController : UITableViewController{
+@interface adcMakeController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myMakes;
 }
+
+@property IBOutlet UITableView *makeTable;
 
 @property NSDictionary *yearObj;
 

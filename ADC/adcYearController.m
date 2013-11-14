@@ -34,6 +34,9 @@
 {
     [super viewDidLoad];
     
+    [yearTable setDelegate:self];
+    [yearTable setDataSource:self];
+    
     adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
     [sessionManager POST:@"api/years.json" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         myYears = responseObject;
@@ -79,14 +82,14 @@
     }
     
     NSDictionary *row = [myYears objectAtIndex:indexPath.row];
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     NSNumber *value = [row valueForKey:@"year"];
     NSString *year = [NSString stringWithFormat:@"%@",value];
-    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
-    [title setTextAlignment:NSTextAlignmentCenter];
     title.text = year;
-    
-    cell addSubview:title
+
+    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [title setTextAlignment:NSTextAlignmentCenter];   
+    [cell addSubview:title];
     
     return cell;
 }

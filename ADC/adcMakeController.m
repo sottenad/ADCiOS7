@@ -17,11 +17,12 @@
 
 @implementation adcMakeController
 
-@synthesize yearObj;
+@synthesize yearObj, makeTable;
 
-- (id)initWithStyle:(UITableViewStyle)style
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -31,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [makeTable setDelegate:self];
+    [makeTable setDataSource:self];
 
     NSString *yearId = [yearObj valueForKey:@"id"];
     
@@ -39,8 +43,9 @@
         NSDictionary *params = @{@"id": yearId};
         
         [sessionManager POST:@"api/makes/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@",responseObject);
             myMakes = responseObject;
-            [self.tableView reloadData];
+            [makeTable reloadData];
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"Error: %@",error);
@@ -83,9 +88,13 @@
     }
     
     NSDictionary *row = [myMakes objectAtIndex:indexPath.row];
-    UILabel *title = (UILabel *)[cell viewWithTag:100];
-    NSString *make = [row valueForKey:@"name"];
-    title.text = make;
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
+    title.text = [row valueForKey:@"name"];
+    
+    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [title setTextAlignment:NSTextAlignmentCenter];
+    [cell addSubview:title];
+    NSLog(@"%@", [row valueForKey:@"name"]);
 
     return cell;
 }
@@ -131,12 +140,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [makeTable deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+    NSIndexPath *selectedRowIndex = [makeTable indexPathForSelectedRow];
     adcModelController *modelViewController = [segue destinationViewController];
     NSDictionary *row = [myMakes objectAtIndex:selectedRowIndex.row];
     
