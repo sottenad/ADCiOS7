@@ -91,7 +91,7 @@
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     title.text = [row valueForKey:@"name"];
     
-    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
     [title setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:title];
     NSLog(@"%@", [row valueForKey:@"name"]);

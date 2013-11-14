@@ -91,7 +91,7 @@
     title.text = year;
     
     
-    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
     [title setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:title];
     

@@ -50,7 +50,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jKd-OF-bYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="356" y="-458"/>
+            <point key="canvasLocation" x="884" y="211"/>
         </scene>
         <!--Adc Year Controller-->
         <scene sceneID="vsP-36-PjZ">
