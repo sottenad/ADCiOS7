@@ -141,6 +141,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="weg-fS-Jb7" kind="push" id="Ri9-kb-suz"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -156,6 +159,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZi-yr-V0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1323" y="-486"/>
+        </scene>
+        <!--Adc Model Controller-->
+        <scene sceneID="o9R-gA-eZA">
+            <objects>
+                <viewController id="weg-fS-Jb7" customClass="adcModelController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Wd-5O-Q5e"/>
+                        <viewControllerLayoutGuide type="bottom" id="9qx-wW-sUA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VTL-h0-Doy">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="model-header.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="lKP-gw-JF8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="113" id="5za-np-hJR"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="113" id="RBo-kh-Zff"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2N6-kF-ESP">
+                                <rect key="frame" x="0.0" y="113" width="320" height="391"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="L49-nI-u2c">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L49-nI-u2c">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lKP-gw-JF8" firstAttribute="top" secondItem="1Wd-5O-Q5e" secondAttribute="bottom" id="2tG-jn-ACx"/>
+                            <constraint firstItem="lKP-gw-JF8" firstAttribute="leading" secondItem="VTL-h0-Doy" secondAttribute="leading" id="Fa1-so-tUf"/>
+                            <constraint firstAttribute="trailing" secondItem="lKP-gw-JF8" secondAttribute="trailing" id="Xvh-fd-7uC"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="o8k-tC-zPi"/>
+                    <connections>
+                        <outlet property="modelTable" destination="2N6-kF-ESP" id="GUs-gO-VmQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EgR-t0-uDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1777" y="-486"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c11-EJ-lN5">

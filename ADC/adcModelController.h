@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcModelController : UITableViewController{
+@interface adcModelController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myModels;
     NSDictionary *mySelectedModel;
 }
 
+@property IBOutlet UITableView *modelTable;
 
 @property NSDictionary *yearObj;
 @property NSDictionary *makeObj;

@@ -15,11 +15,11 @@
 
 @implementation adcModelController
 
-@synthesize makeObj, yearObj;
+@synthesize makeObj, yearObj, modelTable;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -29,6 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [modelTable setDelegate:self];
+    [modelTable setDataSource:self];
 
     NSString *yearId = [yearObj valueForKey:@"id"];
     NSString *makeId = [makeObj valueForKey:@"id"];
@@ -39,7 +42,7 @@
         
         [sessionManager POST:@"api/carsByMakeAndYear/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
             myModels = responseObject;
-            [self.tableView reloadData];
+            [modelTable reloadData];
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"Error: %@",error);
@@ -80,10 +83,13 @@
     }
     
     NSDictionary *row = [myModels objectAtIndex:indexPath.row];
-    UILabel *title = (UILabel *)[cell viewWithTag:100];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];
     NSString *make = [row valueForKey:@"model"];
     title.text = make;
     
+    [title setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [title setTextAlignment:NSTextAlignmentCenter];
+    [cell addSubview:title];
     return cell;
 }
 
@@ -104,7 +110,7 @@
     [defaults setObject:yearObj forKey:@"year"];
     [defaults synchronize];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
     
 }
 
