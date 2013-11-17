@@ -9,6 +9,8 @@
 #import "adcSignInViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import "adcApiSessonManager.h"
+#import "adcUserHelper.h"
+#import "adcHomeViewController.h"
 
 @interface adcSignInViewController ()
 
@@ -63,7 +65,8 @@
             [defaults synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-        [self.navigationController popViewControllerAnimated:YES];
+        adcHomeViewController *home = [[adcHomeViewController alloc] init];
+        [self.navigationController pushViewController:home animated:YES];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't Log In"
@@ -73,8 +76,12 @@
                                               otherButtonTitles:nil];
         [alert show];
     }];
-    
-   
+}
+
+-(void) browseAsGuest:(id)sender{
+    adcHomeViewController *home = [[adcHomeViewController alloc] init];
+    [self.navigationController pushViewController:home animated:YES];
+
 }
 
 

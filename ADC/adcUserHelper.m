@@ -30,4 +30,14 @@
     }
 }
 
++(BOOL) isUserLoggedIn{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSObject *objUsername = [defaults objectForKey:@"auth_token"];
+    if(objUsername != nil){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end

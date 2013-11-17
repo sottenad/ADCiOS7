@@ -14,4 +14,6 @@
 
 +(NSString *)getSelectedVehicleId;
 
++(BOOL)isUserLoggedIn;
+
 @end

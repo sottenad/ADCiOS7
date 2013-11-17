@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    UIImage *barBG = [UIImage imageNamed:@"top_bar.png"];
+    UIImage *barBG = [UIImage imageNamed:@"top_bar_logo.png"];
     [self.navigationController.navigationBar setBackgroundImage:barBG forBarMetrics:UIBarMetricsDefault];
     
     defaultMessage = @"Welcome to the app";
