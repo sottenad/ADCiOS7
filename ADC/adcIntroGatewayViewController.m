@@ -30,14 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    if([adcUserHelper isUserLoggedIn]){
-        [[UIStoryboard storyboardWithName:@"adc" bundle:nil] instantiateViewControllerWithIdentifier:@"CustomVC"];
-        adcHomeViewController *home = [adcHomeViewController alloc];
-        [self.navigationController pushViewController:home animated:YES];
-    }else{
-        adcSignInViewController *signin = [adcSignInViewController alloc];
-        [self.navigationController pushViewController:signin animated:YES];
-    }
+
     
     
 }

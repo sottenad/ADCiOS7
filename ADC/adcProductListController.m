@@ -10,6 +10,7 @@
 #import "adcUserHelper.h"
 #import "adcApiSessonManager.h"
 #import "adcProductDetailController.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface adcProductListController ()
 
@@ -38,15 +39,15 @@
     
     NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
     NSString *categoryId = [categoryObj valueForKey:@"id"];
-    NSString *manufacturerId = [mfgObj valueForKey:@"id"];
     
     if(vehicleId!=nil){
-        NSDictionary *params = @{@"carid":vehicleId, @"catid":categoryId, @"mfgid": manufacturerId };
+        NSDictionary *params = @{@"carid":vehicleId, @"catid":categoryId };
         
         adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
-        [sessionManager POST:@"api/getproductsbycarcatmfg/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        [sessionManager POST:@"api/getproductsbycarcat/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
             myProducts = responseObject;
             [productCollection reloadData];
+            NSLog(@"%@",responseObject);
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"Error: %@",error);
@@ -81,14 +82,22 @@
     
     static NSString *CellIdentifier = @"Cell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
     NSDictionary *row = [myProducts objectAtIndex:indexPath.row];
     UILabel *title = (UILabel *)[cell viewWithTag:100];
-    NSNumber *value = [row valueForKey:@"name"];
-    NSString *year = [NSString stringWithFormat:@"%@",value];
-    title.text = year;
+    NSString *titleText = [row valueForKey:@"name"];
+    title.text = titleText;
     
-    NSLog(@"%@", year);
+    NSArray *imageArr = [row valueForKey:@"product_images"];
+    if(imageArr.count > 0){
+        NSDictionary *imageDict = [imageArr objectAtIndex:0];
+        NSString *imageUrl = [imageDict valueForKey:@"image_url"];
+        if(imageUrl != Nil){
+            UIImageView *imageView = (UIImageView *)[cell viewWithTag:101];
+            [imageView setImageWithURL:[NSURL URLWithString:imageUrl]];
+        }
+    }
+    
+
     return cell;
 }
 

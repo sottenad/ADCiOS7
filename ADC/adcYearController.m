@@ -45,7 +45,9 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Error: %@",error);
     }];
-
+    
+    [self.navigationController.navigationBar setOpaque:YES];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 
 }
 

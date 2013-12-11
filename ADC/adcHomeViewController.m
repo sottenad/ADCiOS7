@@ -7,6 +7,8 @@
 //
 
 #import "adcHomeViewController.h"
+#import "adcUserHelper.h"
+#import "adcSignInViewController.h"
 
 @interface adcHomeViewController ()
 
@@ -33,8 +35,14 @@
 	// Do any additional setup after loading the view.
     UIImage *barBG = [UIImage imageNamed:@"top_bar_logo.png"];
     [self.navigationController.navigationBar setBackgroundImage:barBG forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.hidesBackButton = YES;
     
     defaultMessage = @"Welcome to the app";
+    
+    if(![adcUserHelper isUserLoggedIn]){
+        adcSignInViewController *signin = [[UIStoryboard storyboardWithName:@"adc" bundle:nil] instantiateViewControllerWithIdentifier:@"signInView"];
+        [self.navigationController pushViewController:signin animated:YES];
+    }
     
 }
 

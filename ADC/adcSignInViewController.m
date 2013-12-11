@@ -11,6 +11,7 @@
 #import "adcApiSessonManager.h"
 #import "adcUserHelper.h"
 #import "adcHomeViewController.h"
+#import "MBProgressHUD.h"
 
 @interface adcSignInViewController ()
 
@@ -51,6 +52,13 @@
     
     NSDictionary *options = @{ @"password": password, @"username": login };
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+    });
+    
     [sessionMgr GET:@"token/gettoken" parameters:options success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"response:%@", responseObject);
         NSDictionary *respDict = responseObject;
@@ -64,9 +72,11 @@
             [defaults setObject:[respDict valueForKey:@"username"] forKey:@"username"];
             [defaults synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
-        adcHomeViewController *home = [[adcHomeViewController alloc] init];
-        [self.navigationController pushViewController:home animated:YES];
+
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't Log In"

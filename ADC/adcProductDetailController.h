@@ -20,6 +20,8 @@
 @property IBOutlet UILabel *lblPrice;
 @property IBOutlet UIButton *btnAddToCart;
 @property IBOutlet UITextView *txtProductText;
+@property IBOutlet UIImageView *imgMainImage;
 
+-(IBAction)addToCart:(id)sender;
 
 @end

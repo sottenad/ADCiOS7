@@ -150,6 +150,7 @@
     NSDictionary *row = [myCategories objectAtIndex:selectedRowIndex.row];
     
     productViewController.categoryObj = row;
+
 }
 
 @end
