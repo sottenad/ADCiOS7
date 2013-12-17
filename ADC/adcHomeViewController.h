@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface adcHomeViewController : UIViewController{
+@interface adcHomeViewController : UIViewController<UIAlertViewDelegate>{
     NSString *defaultMessage;
 }
 

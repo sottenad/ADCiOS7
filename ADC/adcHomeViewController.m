@@ -9,6 +9,7 @@
 #import "adcHomeViewController.h"
 #import "adcUserHelper.h"
 #import "adcSignInViewController.h"
+#import "adcCoreDataHelper.h"
 
 @interface adcHomeViewController ()
 
@@ -62,15 +63,51 @@
 
 -(void)clearSelectedVehicle:(id)sender{
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"selected_vehicle_name"];
-    [defaults removeObjectForKey:@"make"];
-    [defaults removeObjectForKey:@"model"];
-    [defaults removeObjectForKey:@"model_id"];
-    [defaults removeObjectForKey:@"year"];
-    [self hideShowButtons];
     
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Remove Vehicle?"
+                                                      message:@"Are you sure you want to remove this vehicle? Doing so will remove also all items from your cart."
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                            otherButtonTitles:nil];
+    [message addButtonWithTitle:@"Remove"];
+    [message show];
+
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        adcCoreDataHelper *dataHelper = [adcCoreDataHelper alloc];
+        NSManagedObjectContext *context = [dataHelper managedObjectContext];
+        
+        NSFetchRequest * allProducts = [[NSFetchRequest alloc] init];
+        [allProducts setEntity:[NSEntityDescription entityForName:@"ProductInCart" inManagedObjectContext:context]];
+        [allProducts setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+        
+        NSError * error = nil;
+        NSArray * products = [context executeFetchRequest:allProducts error:&error];
+        //error handling goes here
+        for (NSManagedObject * product in products) {
+            [context deleteObject:product];
+        }
+        NSError *saveError = nil;
+        [context save:&saveError];
+        
+        
+        //Now Delete userdefault vehicle
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults removeObjectForKey:@"selected_vehicle_name"];
+        [defaults removeObjectForKey:@"make"];
+        [defaults removeObjectForKey:@"model"];
+        [defaults removeObjectForKey:@"model_id"];
+        [defaults removeObjectForKey:@"year"];
+        [self hideShowButtons];
+        
+    }
+}
+
+
+
+
 
 -(void) hideShowButtons{
     // Get the stored data before the view loads

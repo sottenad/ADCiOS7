@@ -7,6 +7,7 @@
 //
 
 #import "adcProductDetailController.h"
+#import "adcCoreDataHelper.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface adcProductDetailController ()
@@ -58,7 +59,9 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     // Create a new managed object
-    NSManagedObjectContext *context = [self managedObjectContext];
+    adcCoreDataHelper *dataHelper = [adcCoreDataHelper alloc];
+    NSManagedObjectContext *context = [dataHelper managedObjectContext];
+
     NSManagedObject *newProduct = [NSEntityDescription insertNewObjectForEntityForName:@"ProductInCart" inManagedObjectContext:context];
     NSData *productData = [NSKeyedArchiver archivedDataWithRootObject:productObj];
     
@@ -82,13 +85,6 @@
 
 }
 
--(NSManagedObjectContext *)managedObjectContext{
-    NSManagedObjectContext *context = nil;
-    id mydelegate = [[UIApplication sharedApplication] delegate];
-    if([mydelegate performSelector:@selector(managedObjectContext)]){
-        context = [mydelegate managedObjectContext];
-    }
-    return context;
-}
+
 
 @end

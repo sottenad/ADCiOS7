@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dg3-Bt-Hul">
-                                <rect key="frame" x="-5" y="215" width="325" height="289"/>
+                                <rect key="frame" x="-5" y="192" width="325" height="312"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -94,18 +94,22 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AM-0S-zEn">
-                                <rect key="frame" x="89" y="102" width="143" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AM-0S-zEn">
+                                <rect key="frame" x="10" y="104" width="300" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="143" id="uqL-DD-RxW"/>
+                                    <constraint firstAttribute="height" constant="37" id="2HW-QV-jZu"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="tKb-t4-ybs"/>
                                 </constraints>
-                                <state key="normal" title="Proceed to checkout">
+                                <state key="normal" title="Proceed to checkout" image="checkout.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="R7s-sI-XLY" kind="push" id="8dr-0E-pMO"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Cart" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yc-RK-zOy">
-                                <rect key="frame" x="144" y="172" width="33" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Cart" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yc-RK-zOy">
+                                <rect key="frame" x="144" y="163" width="33" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33" id="Nmt-L5-bcI"/>
@@ -128,11 +132,13 @@
                         <constraints>
                             <constraint firstItem="1J9-YR-AdG" firstAttribute="leading" secondItem="dPZ-bY-99Q" secondAttribute="leading" constant="115" id="1WS-kw-SRU"/>
                             <constraint firstItem="VEN-AA-dq9" firstAttribute="leading" secondItem="dPZ-bY-99Q" secondAttribute="leading" constant="36" id="7IR-aD-vPc"/>
-                            <constraint firstItem="6AM-0S-zEn" firstAttribute="top" secondItem="VEN-AA-dq9" secondAttribute="bottom" constant="27" id="87a-ZJ-Il9"/>
                             <constraint firstItem="1J9-YR-AdG" firstAttribute="top" secondItem="F5k-0p-kuf" secondAttribute="bottom" constant="20" id="DQZ-NG-G6s"/>
                             <constraint firstItem="VEN-AA-dq9" firstAttribute="top" secondItem="1J9-YR-AdG" secondAttribute="bottom" constant="13" id="Hcj-Do-4f9"/>
+                            <constraint firstItem="6AM-0S-zEn" firstAttribute="leading" secondItem="dPZ-bY-99Q" secondAttribute="leading" constant="10" id="J71-mM-6yB"/>
                             <constraint firstItem="3yc-RK-zOy" firstAttribute="top" secondItem="6AM-0S-zEn" secondAttribute="bottom" constant="40" id="OoR-i2-CrN"/>
                             <constraint firstAttribute="trailing" secondItem="VEN-AA-dq9" secondAttribute="trailing" constant="41" id="Xok-IL-Ssf"/>
+                            <constraint firstAttribute="trailing" secondItem="6AM-0S-zEn" secondAttribute="trailing" constant="10" id="Ybn-rZ-lgc"/>
+                            <constraint firstItem="6AM-0S-zEn" firstAttribute="top" secondItem="VEN-AA-dq9" secondAttribute="bottom" constant="29" id="ZvE-9u-6PM"/>
                             <constraint firstAttribute="trailing" secondItem="1J9-YR-AdG" secondAttribute="trailing" constant="120" id="opT-f5-ncR"/>
                             <constraint firstItem="dg3-Bt-Hul" firstAttribute="top" secondItem="3yc-RK-zOy" secondAttribute="bottom" constant="22" id="wrG-mq-qe1"/>
                         </constraints>
@@ -146,6 +152,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3og-Sc-CQj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="884" y="249"/>
+        </scene>
+        <!--Adc Checkout View Controller-->
+        <scene sceneID="cVn-qD-4NU">
+            <objects>
+                <viewController id="R7s-sI-XLY" customClass="adcCheckoutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aOe-L1-98M"/>
+                        <viewControllerLayoutGuide type="bottom" id="7nk-CZ-mra"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kc2-e4-jXq">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOv-6n-7wY">
+                                <rect key="frame" x="10" y="27" width="300" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="email_order.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iof-N7-z0G">
+                                <rect key="frame" x="10" y="202" width="300" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="email_and_call.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="emR-LF-IAw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lzE-9i-sgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1332" y="249"/>
         </scene>
         <!--Adc Year Controller-->
         <scene sceneID="vsP-36-PjZ">
@@ -218,7 +259,9 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="uzz-WJ-Tp5"/>
+                    <navigationItem key="navigationItem" id="uzz-WJ-Tp5">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="vVF-dj-bB3"/>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="yearTable" destination="9CM-sN-54B" id="hgu-XU-rn2"/>
@@ -447,10 +490,10 @@ you are interested in browsing for.</string>
             </objects>
             <point key="canvasLocation" x="2181" y="-486"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Adc Navigation Controller-->
         <scene sceneID="c11-EJ-lN5">
             <objects>
-                <navigationController definesPresentationContext="YES" id="JFq-HR-Ggl" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="JFq-HR-Ggl" customClass="adcNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="57i-Km-hs5">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -726,6 +769,9 @@ you are interested in browsing for.</string>
     </scenes>
     <resources>
         <image name="browse_button.png" width="301" height="37"/>
+        <image name="checkout.png" width="301" height="37"/>
+        <image name="email_and_call.png" width="301" height="37"/>
+        <image name="email_order.png" width="301" height="37"/>
         <image name="login_background.png" width="320" height="568"/>
         <image name="login_button.png" width="301" height="37"/>
         <image name="model-header.jpg" width="320" height="113"/>
