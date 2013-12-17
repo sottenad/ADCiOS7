@@ -165,12 +165,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOv-6n-7wY">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOv-6n-7wY">
                                 <rect key="frame" x="10" y="27" width="300" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="SKI-By-DlZ"/>
+                                    <constraint firstAttribute="width" constant="300" id="TTX-5f-TrI"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="email_order.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendOrder:" destination="R7s-sI-XLY" eventType="touchUpInside" id="AWQ-cY-gsN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iof-N7-z0G">
                                 <rect key="frame" x="10" y="202" width="300" height="37"/>
@@ -181,6 +188,11 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zOv-6n-7wY" firstAttribute="top" secondItem="aOe-L1-98M" secondAttribute="bottom" constant="27" id="7hP-lK-kbZ"/>
+                            <constraint firstItem="zOv-6n-7wY" firstAttribute="leading" secondItem="Kc2-e4-jXq" secondAttribute="leading" constant="10" id="k37-sQ-Dtu"/>
+                            <constraint firstAttribute="trailing" secondItem="zOv-6n-7wY" secondAttribute="trailing" constant="10" id="scA-r8-epg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="emR-LF-IAw"/>
                 </viewController>

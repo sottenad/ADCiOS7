@@ -10,4 +10,6 @@
 
 @interface adcCheckoutViewController : UIViewController
 
+-(IBAction)sendOrder:(id)sender;
+
 @end

@@ -43,7 +43,7 @@
     if(user_token!=nil){
         [newParams setValue:user_token forKey:@"auth_token"];
     }
-    return [super GET:URLString parameters:newParams success:success failure:failure];
+    return [super POST:URLString parameters:newParams success:success failure:failure];
     
 }
 

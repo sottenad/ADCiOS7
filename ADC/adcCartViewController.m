@@ -7,6 +7,7 @@
 //
 
 #import "adcCartViewController.h"
+#import "adcCoreDataHelper.h"
 
 @interface adcCartViewController ()
 
@@ -36,9 +37,10 @@
     NSNumber *totalPrice = [NSNumber numberWithInt:0];
     
     arrayOfItems = [[NSMutableArray alloc] init];
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    adcCoreDataHelper *dataHelper = [adcCoreDataHelper alloc];
+    NSManagedObjectContext *context = [dataHelper managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"ProductInCart"];
-    NSArray *arr = [[managedObjectContext executeFetchRequest:fetchRequest error:nil]mutableCopy];
+    NSArray *arr = [[context executeFetchRequest:fetchRequest error:nil]mutableCopy];
     for(int i = 0; i<arr.count; i++){
         NSManagedObject *productInCart = [arr objectAtIndex:i];
         NSData *mydata = [productInCart valueForKey:@"product"];
@@ -105,13 +107,5 @@
 }
 
 
--(NSManagedObjectContext *)managedObjectContext{
-    NSManagedObjectContext *context = nil;
-    id mydelegate = [[UIApplication sharedApplication] delegate];
-    if([mydelegate performSelector:@selector(managedObjectContext)]){
-        context = [mydelegate managedObjectContext];
-    }
-    return context;
-}
 
 @end
