@@ -16,4 +16,6 @@
 
 +(BOOL)isUserLoggedIn;
 
++(NSString *) getUserId;
+
 @end

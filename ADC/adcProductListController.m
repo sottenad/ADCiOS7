@@ -55,6 +55,7 @@
     }else{
         NSLog(@"Somehow you got here without a Vehicle ID or Category ID.");
     }
+
 }
 
 - (void)didReceiveMemoryWarning

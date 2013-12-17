@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcCheckoutViewController : UIViewController
+@interface adcCheckoutViewController : adcBaseViewController
 
 -(IBAction)sendOrder:(id)sender;
 

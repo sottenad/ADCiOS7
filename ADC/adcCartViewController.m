@@ -53,6 +53,7 @@
     [cartTable reloadData];
 
     price.text = [NSString stringWithFormat:@"$%@",totalPrice];
+        self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)didReceiveMemoryWarning

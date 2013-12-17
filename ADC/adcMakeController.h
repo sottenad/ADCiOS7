@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcMakeController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+@interface adcMakeController : adcBaseViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myMakes;
 }
 

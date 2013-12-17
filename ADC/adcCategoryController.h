@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcCategoryController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+@interface adcCategoryController : adcBaseViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myCategories;
 }
 

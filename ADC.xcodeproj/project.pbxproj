@@ -38,7 +38,6 @@
 		AAAFF47E1830250C00917E76 /* adcHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF47D1830250C00917E76 /* adcHomeViewController.m */; };
 		AAAFF4811830267100917E76 /* adcSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAFF4801830267100917E76 /* adcSignInViewController.m */; };
 		AABBA4EF185846CC003F0518 /* adcCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABBA4EE185846CC003F0518 /* adcCartViewController.m */; };
-		AABBA4F2185ABE66003F0518 /* adcNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABBA4F1185ABE66003F0518 /* adcNavigationController.m */; };
 		AABBA4F51860142F003F0518 /* adcCoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AABBA4F41860142F003F0518 /* adcCoreDataHelper.m */; };
 		AABBA4F8186015DD003F0518 /* adcCheckoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABBA4F7186015DD003F0518 /* adcCheckoutViewController.m */; };
 		AABBA502186017BA003F0518 /* checkout.png in Resources */ = {isa = PBXBuildFile; fileRef = AABBA4FA186017BA003F0518 /* checkout.png */; };
@@ -53,6 +52,8 @@
 		AABBA50F186017C5003F0518 /* cart@2x in Resources */ = {isa = PBXBuildFile; fileRef = AABBA50B186017C5003F0518 /* cart@2x */; };
 		AABBA510186017C5003F0518 /* checkout_header.png in Resources */ = {isa = PBXBuildFile; fileRef = AABBA50C186017C5003F0518 /* checkout_header.png */; };
 		AABBA511186017C5003F0518 /* checkout_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AABBA50D186017C5003F0518 /* checkout_header@2x.png */; };
+		AABBA5141860457C003F0518 /* adcBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABBA5131860457C003F0518 /* adcBaseViewController.m */; };
+		AABBA51718604F2E003F0518 /* adcThanksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABBA51618604F2E003F0518 /* adcThanksViewController.m */; };
 		AACE66AD18302FE40012FEB0 /* adcApiSessonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE66AC18302FE40012FEB0 /* adcApiSessonManager.m */; };
 		AACE66BB18308A4F0012FEB0 /* adcUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE66BA18308A4F0012FEB0 /* adcUserHelper.m */; };
 		AACE66BE1831EA440012FEB0 /* adcYearController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE66BD1831EA440012FEB0 /* adcYearController.m */; };
@@ -125,8 +126,6 @@
 		AAAFF4801830267100917E76 /* adcSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcSignInViewController.m; sourceTree = "<group>"; };
 		AABBA4ED185846CC003F0518 /* adcCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcCartViewController.h; sourceTree = "<group>"; };
 		AABBA4EE185846CC003F0518 /* adcCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcCartViewController.m; sourceTree = "<group>"; };
-		AABBA4F0185ABE66003F0518 /* adcNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcNavigationController.h; sourceTree = "<group>"; };
-		AABBA4F1185ABE66003F0518 /* adcNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcNavigationController.m; sourceTree = "<group>"; };
 		AABBA4F31860142F003F0518 /* adcCoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcCoreDataHelper.h; sourceTree = "<group>"; };
 		AABBA4F41860142F003F0518 /* adcCoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcCoreDataHelper.m; sourceTree = "<group>"; };
 		AABBA4F6186015DD003F0518 /* adcCheckoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcCheckoutViewController.h; sourceTree = "<group>"; };
@@ -143,6 +142,10 @@
 		AABBA50B186017C5003F0518 /* cart@2x */ = {isa = PBXFileReference; lastKnownFileType = file; name = "cart@2x"; path = "images/cart@2x"; sourceTree = "<group>"; };
 		AABBA50C186017C5003F0518 /* checkout_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkout_header.png; path = images/checkout_header.png; sourceTree = "<group>"; };
 		AABBA50D186017C5003F0518 /* checkout_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkout_header@2x.png"; path = "images/checkout_header@2x.png"; sourceTree = "<group>"; };
+		AABBA5121860457C003F0518 /* adcBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcBaseViewController.h; sourceTree = "<group>"; };
+		AABBA5131860457C003F0518 /* adcBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcBaseViewController.m; sourceTree = "<group>"; };
+		AABBA51518604F2E003F0518 /* adcThanksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcThanksViewController.h; sourceTree = "<group>"; };
+		AABBA51618604F2E003F0518 /* adcThanksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcThanksViewController.m; sourceTree = "<group>"; };
 		AACE66AB18302FE40012FEB0 /* adcApiSessonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcApiSessonManager.h; sourceTree = "<group>"; };
 		AACE66AC18302FE40012FEB0 /* adcApiSessonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = adcApiSessonManager.m; sourceTree = "<group>"; };
 		AACE66B918308A4F0012FEB0 /* adcUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adcUserHelper.h; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 				AABBA4EE185846CC003F0518 /* adcCartViewController.m */,
 				AABBA4F6186015DD003F0518 /* adcCheckoutViewController.h */,
 				AABBA4F7186015DD003F0518 /* adcCheckoutViewController.m */,
+				AABBA51518604F2E003F0518 /* adcThanksViewController.h */,
+				AABBA51618604F2E003F0518 /* adcThanksViewController.m */,
 			);
 			name = "Product Detail and Cart";
 			sourceTree = "<group>";
@@ -298,10 +303,10 @@
 				AACE66AC18302FE40012FEB0 /* adcApiSessonManager.m */,
 				AACE66B918308A4F0012FEB0 /* adcUserHelper.h */,
 				AACE66BA18308A4F0012FEB0 /* adcUserHelper.m */,
-				AABBA4F0185ABE66003F0518 /* adcNavigationController.h */,
-				AABBA4F1185ABE66003F0518 /* adcNavigationController.m */,
 				AABBA4F31860142F003F0518 /* adcCoreDataHelper.h */,
 				AABBA4F41860142F003F0518 /* adcCoreDataHelper.m */,
+				AABBA5121860457C003F0518 /* adcBaseViewController.h */,
+				AABBA5131860457C003F0518 /* adcBaseViewController.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -571,7 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AABBA4F2185ABE66003F0518 /* adcNavigationController.m in Sources */,
+				AABBA51718604F2E003F0518 /* adcThanksViewController.m in Sources */,
 				AAF1B0E6183022FC00604D91 /* main.m in Sources */,
 				AAF1B0EA183022FC00604D91 /* adcAppDelegate.m in Sources */,
 				AACE66C71832091A0012FEB0 /* adcModelController.m in Sources */,
@@ -584,6 +589,7 @@
 				AAAFF4811830267100917E76 /* adcSignInViewController.m in Sources */,
 				AACE66AD18302FE40012FEB0 /* adcApiSessonManager.m in Sources */,
 				AA4FE3AB1834AA32006F2424 /* adcProductDetailController.m in Sources */,
+				AABBA5141860457C003F0518 /* adcBaseViewController.m in Sources */,
 				AACE66BB18308A4F0012FEB0 /* adcUserHelper.m in Sources */,
 				AAF1B0ED183022FC00604D91 /* ADC.xcdatamodeld in Sources */,
 				AABBA4EF185846CC003F0518 /* adcCartViewController.m in Sources */,

@@ -66,7 +66,7 @@
         <!--Adc Cart View Controller-->
         <scene sceneID="HnN-Xu-cPf">
             <objects>
-                <viewController id="cFD-k3-R4J" customClass="adcCartViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="cartView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cFD-k3-R4J" customClass="adcCartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F5k-0p-kuf"/>
                         <viewControllerLayoutGuide type="bottom" id="sNw-pW-5nH"/>
@@ -177,6 +177,7 @@
                                 </state>
                                 <connections>
                                     <action selector="sendOrder:" destination="R7s-sI-XLY" eventType="touchUpInside" id="AWQ-cY-gsN"/>
+                                    <segue destination="HMk-vj-2LY" kind="push" id="Rh0-vD-oZG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iof-N7-z0G">
@@ -199,6 +200,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lzE-9i-sgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1332" y="249"/>
+        </scene>
+        <!--Adc Thanks View Controller-->
+        <scene sceneID="XQA-Tx-25k">
+            <objects>
+                <viewController id="HMk-vj-2LY" customClass="adcThanksViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xq7-N6-j3B"/>
+                        <viewControllerLayoutGuide type="bottom" id="Frl-i3-F27"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CHu-d9-XWE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thanks, we cleared your cart" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVD-M6-ZRH">
+                                <rect key="frame" x="49" y="187" width="222" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tQE-xl-JkF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CXo-nw-PLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1758" y="249"/>
         </scene>
         <!--Adc Year Controller-->
         <scene sceneID="vsP-36-PjZ">
@@ -506,10 +534,15 @@ you are interested in browsing for.</string>
         <scene sceneID="c11-EJ-lN5">
             <objects>
                 <navigationController definesPresentationContext="YES" id="JFq-HR-Ggl" customClass="adcNavigationController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="57i-Km-hs5">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jSo-MH-P2G">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="FMw-Dz-HG6" kind="relationship" relationship="rootViewController" id="6hl-1o-YzC"/>
                     </connections>
@@ -604,7 +637,7 @@ you are interested in browsing for.</string>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cFD-k3-R4J" kind="push" id="uhs-tH-pR3"/>
+                                    <segue destination="cFD-k3-R4J" kind="push" identifier="toCart" id="uhs-tH-pR3"/>
                                 </connections>
                             </button>
                         </subviews>

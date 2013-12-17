@@ -58,8 +58,8 @@
     NSString *vehicleId = [adcUserHelper getSelectedVehicleId];
     NSString *productIds = [arrayOfItems componentsJoinedByString:@","];
     
-    if(vehicleId!=nil){
-        NSDictionary *params = @{@"order": @{@"vehicle_id":vehicleId, @"product_ids": productIds}};
+    if(vehicleId!=nil && [adcUserHelper isUserLoggedIn]){
+        NSDictionary *params = @{@"order": @{@"car_id":vehicleId, @"product_ids": arrayOfItems, @"user_id": [adcUserHelper getUserId] }};
         
         adcApiSessonManager *sessionManager = [adcApiSessonManager sharedManager];
         [sessionManager POST:@"orders.json/" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -73,7 +73,7 @@
         NSLog(@"Somehow you got here without a vehicle id.");
     }
 
-
+    self.navigationItem.rightBarButtonItem = nil;
     
 }
 

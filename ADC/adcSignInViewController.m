@@ -69,12 +69,14 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:[respDict valueForKey:@"auth_token"] forKey:@"auth_token"];
             [defaults setInteger: (int)[respDict valueForKey:@"price_multiplier"] forKey:@"price_multiplier"];
+            NSLog(@"%@",respDict);
             [defaults setObject:[respDict valueForKey:@"username"] forKey:@"username"];
+            [defaults setObject:[respDict valueForKey:@"user_id"] forKey:@"user_id"];
             [defaults synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];            
             [self.navigationController popToRootViewControllerAnimated:YES];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         }
 
         

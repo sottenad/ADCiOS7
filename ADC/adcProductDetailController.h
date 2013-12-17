@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcProductDetailController : UIViewController{
+@interface adcProductDetailController : adcBaseViewController{
     
 }
 

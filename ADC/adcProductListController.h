@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcProductListController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>{
+@interface adcProductListController : adcBaseViewController <UICollectionViewDataSource, UICollectionViewDelegate>{
     NSMutableArray *myProducts;
 }
 

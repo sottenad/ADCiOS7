@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcCartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface adcCartViewController : adcBaseViewController <UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *arrayOfItems;
 }

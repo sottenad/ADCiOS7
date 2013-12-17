@@ -12,5 +12,6 @@
 
 
 -(NSManagedObjectContext *)managedObjectContext;
+-(void)clearCart;
 
 @end

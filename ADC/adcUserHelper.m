@@ -40,4 +40,14 @@
     }
 }
 
++(NSString *) getUserId{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *objUsername = [defaults objectForKey:@"user_id"];
+    if(objUsername != nil){
+        return objUsername;
+    }else{
+        return @"0" ;
+    }
+}
+
 @end

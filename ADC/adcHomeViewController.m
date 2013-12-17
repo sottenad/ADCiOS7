@@ -77,20 +77,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
         adcCoreDataHelper *dataHelper = [adcCoreDataHelper alloc];
-        NSManagedObjectContext *context = [dataHelper managedObjectContext];
-        
-        NSFetchRequest * allProducts = [[NSFetchRequest alloc] init];
-        [allProducts setEntity:[NSEntityDescription entityForName:@"ProductInCart" inManagedObjectContext:context]];
-        [allProducts setIncludesPropertyValues:NO]; //only fetch the managedObjectID
-        
-        NSError * error = nil;
-        NSArray * products = [context executeFetchRequest:allProducts error:&error];
-        //error handling goes here
-        for (NSManagedObject * product in products) {
-            [context deleteObject:product];
-        }
-        NSError *saveError = nil;
-        [context save:&saveError];
+        [dataHelper clearCart];
         
         
         //Now Delete userdefault vehicle

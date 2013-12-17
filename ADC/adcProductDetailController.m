@@ -80,9 +80,10 @@
     if (![context save:&error]) {
         NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
     }else{
-        
+        [super calculateNumberInCart];
     }
 
+    
 }
 
 

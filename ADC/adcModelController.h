@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcModelController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+@interface adcModelController : adcBaseViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myModels;
     NSDictionary *mySelectedModel;
 }

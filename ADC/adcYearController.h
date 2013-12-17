@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "adcBaseViewController.h"
 
-@interface adcYearController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+@interface adcYearController : adcBaseViewController <UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *myYears;
 }
 
